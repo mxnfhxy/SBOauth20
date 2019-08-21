@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rszdm.spbtmbtsswg.dao.CasioMapper" >
+  <resultMap id="BaseResultMap" type="com.rszdm.spbtmbtsswg.entity.Casio" >
+    <id column="objectID" property="objectid" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="sourceSite" property="sourcesite" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    objectID, price, date, sourceSite
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from casio
+    where objectID = #{objectid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from casio
+    where objectID = #{objectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rszdm.spbtmbtsswg.entity.Casio" >
+    insert into casio (objectID, price, date, 
+      sourceSite)
+    values (#{objectid,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
+      #{sourcesite,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rszdm.spbtmbtsswg.entity.Casio" >
+    insert into casio
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectid != null" >
+        objectID,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="sourcesite != null" >
+        sourceSite,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectid != null" >
+        #{objectid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcesite != null" >
+        #{sourcesite,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rszdm.spbtmbtsswg.entity.Casio" >
+    update casio
+    <set >
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcesite != null" >
+        sourceSite = #{sourcesite,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where objectID = #{objectid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rszdm.spbtmbtsswg.entity.Casio" >
+    update casio
+    set price = #{price,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      sourceSite = #{sourcesite,jdbcType=VARCHAR}
+    where objectID = #{objectid,jdbcType=INTEGER}
+  </update>
+</mapper>
