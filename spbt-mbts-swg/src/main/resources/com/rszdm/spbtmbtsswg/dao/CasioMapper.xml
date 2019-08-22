@@ -16,6 +16,10 @@
     from casio
     where objectID = #{objectid,jdbcType=INTEGER}
   </select>
+  <select id="queryAll" resultMap="BaseResultMap">
+		select * from casio
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from casio
     where objectID = #{objectid,jdbcType=INTEGER}
