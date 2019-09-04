@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "casio")
+@RequestMapping(value = "/")
 public class CasioController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class CasioController {
     }***/
 
     @ApiOperation("添加")
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/casio", method = RequestMethod.POST)
     private JsonResult add(@RequestBody Casio casio) throws DuplicateEntryForPrimaryKeyException {
         Integer row = casioService.add02(casio);
         System.out.println("add one row in DB, return :::" + row);
@@ -54,7 +54,7 @@ public class CasioController {
     }
 
     @ApiOperation("根据id删除信息")
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/casio/{id}", method = RequestMethod.DELETE)
     private JsonResult delete(@PathVariable Integer id) { // 删除的时候不需要传递json数据,但是需要有参数id，因此用
         // @PathVariable注解参数
         Integer row = casioService.delete(id);
@@ -69,7 +69,7 @@ public class CasioController {
     }
 
     @ApiOperation("根据id更新信息")
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/casio/{id}", method = RequestMethod.PUT)
     private JsonResult update(@RequestBody Casio casio, @PathVariable Integer id) {
         Integer row = casioService.update(casio);
 
@@ -83,7 +83,7 @@ public class CasioController {
     }
 
     @ApiOperation("根据id查询信息")
-    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/casio/{id}", method = RequestMethod.GET)
     private JsonResult queryById(@PathVariable Integer id) throws NotFoundException {
         Casio casio = casioService.queryById(id);
 
@@ -114,7 +114,7 @@ public class CasioController {
 
 
     @ApiOperation("查询所有")
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/casio", method = RequestMethod.GET)
     private JsonResult queryAll() {
         List<Casio> casioLists = casioService.queryAll();
 
